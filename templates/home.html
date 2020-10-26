@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="search_term" class="col-md-6" value="{{query}}"/>
+    <button type="submit" class="btn btn-success col-md-3">search</button>
+  </form>
+  {% for result in results %}
+    <p>{{result.title}}</p>
+    <a href="{{result.document.url}}" target="_blank">Open file</a>
+    <hr class="mt-0 mb-4">
+  {% endfor %}
+{% endblock %}
